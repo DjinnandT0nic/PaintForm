@@ -78,12 +78,12 @@ namespace PaintForm
             }
 
             //Checks if the txtHeight, txtLength, txtWidth and txtPaintCover boxes are empty.
-            //if all four have values, lblPaint's text is set to the calculated quantity of paint needed to cover the walls (Paint Needed = Surface Area / (Paint Coatings * Surface Area per Litre).
+            //if all four have values, lblPaint's text is set to the calculated quantity of paint needed to cover the walls (Paint Needed = Surface Area / Paint Coatings * Surface Area per Litre.
             //if any are empty, lblPaint's text is cleared.            
             if (!String.IsNullOrEmpty(txtHeight.Text) && !String.IsNullOrEmpty(txtLength.Text) && !String.IsNullOrEmpty(txtWidth.Text) && !String.IsNullOrEmpty(txtPaintCover.Text))
             {
                 //The value of txtPaintCover is converted to double for the calculation, the result of which is then converted back into a string, so it can be passed to the label.
-                double paint = (surfaceArea / (Convert.ToDouble(tBarPaint.Value) * Convert.ToDouble(txtPaintCover.Text)));
+                double paint = (surfaceArea * Convert.ToDouble(tBarPaint.Value) / Convert.ToDouble(txtPaintCover.Text));
                 lblPaint.Text = Convert.ToString( Math.Round(paint, 2)  + " litres");
             }
             else
